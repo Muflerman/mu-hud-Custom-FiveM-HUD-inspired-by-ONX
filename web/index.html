@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>MT HUD</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="player-hud-container">
+            <div id="voice-container" class="hud-field">
+                <i class='fas fa-microphone hud-icon'></i>
+                <div id="voice"></div>
+            </div>
+            <div id="health-container" class="hud-field">
+                <i class='fas fa-heartbeat hud-icon'></i>
+                <div id="health"></div>
+            </div>
+            <div id="armor-container" class="hud-field">
+                <i class='fas fa-shield-alt hud-icon'></i>
+                <div id="armor"></div>
+            </div>
+            <div id="thirst-container" class="hud-field">
+                <i class='fa-solid fa-glass-water hud-icon'></i>
+                <div id="thirst"></div>
+            </div>
+            <div id="hunger-container" class="hud-field">
+                <i class='fa-solid fa-utensils hud-icon'></i>
+                <div id="hunger"></div>
+            </div>
+            <div id="stamina-container" class="hud-field">
+                <i class='fas fa-running hud-icon'></i>
+                <div id="stamina"></div>
+            </div>
+            <div id="stress-container" class="hud-field">
+                <i class='fa-solid fa-brain hud-icon'></i>
+                <div id="stress"></div>
+            </div>
+        </div>
+
+        <div id="vehicle-hud-container">
+            <div id="speed-type">KM/H</div>
+            <div id="speed">
+                <span id="speed-zeroes">000</span><span id="speed-value"></span>
+            </div>
+            <div id="fuel"></div>
+            <div id="fuel-icon"><i class='fas fa-gas-pump'></i></div>
+            <div id="gear"></div>
+            <div id="street1"></div>
+            <div id="street2"></div>
+            <div id="direction"></div>
+            <div id="alt-txt"></div>
+            <div id="altitude"></div>
+        </div>
+    </body>
+</html>
