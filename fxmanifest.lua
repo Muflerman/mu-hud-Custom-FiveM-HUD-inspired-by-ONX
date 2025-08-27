@@ -1,6 +1,6 @@
 fx_version 'cerulean'
 author 'Mufler'
-description 'Simple Player HUD for FiveM'
+description 'HUD for FiveM'
 game 'gta5'
 lua54 'yes'
 
@@ -24,3 +24,4 @@ files {
     'web/*.css',
     'web/*.js'
 }
+
