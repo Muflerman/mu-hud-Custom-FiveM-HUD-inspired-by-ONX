@@ -1,0 +1,378 @@
+@import url('https://fonts.cdnfonts.com/css/tt-autonomous-trl');
+@import url('https://fonts.cdnfonts.com/css/obised');
+
+/* ===== Body y HUD principal ===== */
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    font-family: 'TT Autonomous Trl', sans-serif;
+}
+
+#player-hud-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    bottom: 30px;
+    left: 20px;
+    gap: 5px;
+    z-index: 1000;
+}
+
+/* ===== Estilo general de cada cuadro HUD ===== */
+.hud-field {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ===== Contenedores base con fondo oscuro + brillo interior ===== */
+#health-container,
+#armor-container,
+#thirst-container,
+#hunger-container,
+#stamina-container,
+#stress-container,
+#voice-container {
+    background-color: rgba(0, 0, 0, 0.793);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* VIDA */
+#health-container {
+    border: 2px solid rgba(0, 255, 0, 1);
+    box-shadow: inset 0 0 12px rgba(0, 255, 0, 0.9), 
+                inset 0 0 20px rgba(0, 255, 0, 1); 
+}
+
+#health-container .hud-icon { color: rgb(137, 225, 109); }
+
+/* ARMOR */
+#armor-container {
+    border: 2px solid rgba(128, 0, 128, 0.9);
+    box-shadow: inset 0 0 8px rgba(128, 0, 128, 0.6);
+}
+#armor-container .hud-icon { color: rgb(128, 0, 128); }
+
+/* THIRST */
+#thirst-container {
+    border: 2px solid rgb(122, 223, 252);
+    box-shadow: inset 0 0 8px rgba(122, 224, 252, 0.472),
+                inset 0 0 20px rgb(122, 223, 252);
+}
+#thirst-container .hud-icon { color: rgb(122, 223, 252); }
+
+/* HUNGER */
+#hunger-container {
+    border: 2px solid rgba(255, 200, 0, 0.9);
+    box-shadow: inset 0 0 8px rgba(255, 200, 0, 0.6);
+}
+#hunger-container .hud-icon { color: rgb(255, 200, 0); }
+
+/* STAMINA */
+#stamina-container {
+    border: 2px solid rgba(200, 200, 200, 0.9);
+    box-shadow: inset 0 0 8px rgba(200, 200, 200, 0.6);
+}
+#stamina-container .hud-icon { color: rgb(200, 200, 200); }
+
+/* STRESS */
+#stress-container {
+    border: 2px solid rgba(255, 0, 255, 0.9);
+    box-shadow: inset 0 0 8px rgba(255, 0, 255, 0.6);
+}
+#stress-container .hud-icon { color: rgb(255, 0, 255); }
+
+/* VOICE */
+#voice-container {
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.6);
+}
+#voice-container .hud-icon { color: rgb(255, 255, 255); }
+
+/* ===== Iconos ===== */
+.hud-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    z-index: 2;
+}
+
+/* ===== Barras ===== */
+#health, #armor, #thirst, #hunger, #stamina, #stress, #voice {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    border-radius: 0 0 6px 6px;
+    transition: height 0.8s ease;
+    overflow: hidden;
+}
+
+/* barrita superior con el mismo color que el borde */
+#health::after, 
+#armor::after, 
+#thirst::after, 
+#hunger::after,
+#stress ::after,
+#stamina::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: inherit;
+}
+#stress::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 0, 255, 0.9); /* mismo color que el borde */
+    border-radius: 2px;
+}
+
+
+/* ===== Colores de relleno con degradado oscuro ===== */
+#health  { background: linear-gradient(to top, rgba(136, 225, 109, 0.9), rgba(0, 0, 0, 0.7)); }
+#armor   { background: linear-gradient(to top, rgba(128, 0, 128, 0.85), rgba(0, 0, 0, 0.7)); }
+#thirst  { background: linear-gradient(to top, rgba(122, 223, 252, 0.9), rgba(0, 0, 0, 0.7)); }
+#hunger  { background: linear-gradient(to top, rgba(255, 200, 0, 0.9), rgba(0, 0, 0, 0.7)); }
+#stamina { background: linear-gradient(to top, rgba(200, 200, 200, 0.85), rgba(0, 0, 0, 0.7)); }
+#stress  { background: linear-gradient(to top, rgba(255, 0, 255, 0.85), rgba(0, 0, 0, 0.65)); }
+
+/* ===== Voice (blanco por defecto, amarillo al hablar) ===== */
+#voice {
+    height: 100% !important;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.761));
+    color: rgb(255,255,255); /* ← blanco cuando está en silencio */
+}
+
+/* Barrita superior VOICE en silencio */
+#voice::after {
+    content: "";
+    position: absolute;
+    top: 5px;                /* 🔽 la bajamos un poco */
+    left: 0;
+    width: 100%;
+    height: 2px;             /* grosor de la línea */
+    background: rgb(255,255,255); /* blanca */
+    border-radius: 2px;
+}
+
+/* Cuando habla → cambia a amarillo */
+#voice-container.speaking #voice::after {
+    background: rgb(255,200,0);
+    top: 3px;                /* 🔽 un pelín más arriba */
+}
+
+
+
+/* ===== Animaciones ===== */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+#stress-container .hud-icon {
+    animation: blink 1s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-48%, -50%) rotate(-5deg); }
+    75% { transform: translate(-52%, -50%) rotate(5deg); }
+}
+
+/* Aplica el "shake" solo cuando la barra está al 50% o menos */
+#health.low .hud-icon,
+#armor.low .hud-icon,
+#thirst.low .hud-icon,
+#hunger.low .hud-icon,
+#stamina.low .hud-icon {
+    animation: shake 0.5s infinite;
+}
+
+/* ===== Siempre visibles: vida y voz ===== */
+#health-container,
+#voice-container {
+    display: flex !important;
+    opacity: 1 !important;
+    z-index: 1000;
+}
+
+/* ===== Ocultamos otras barras por defecto ===== */
+#armor-container,
+#thirst-container,
+#hunger-container,
+#stamina-container,
+#stress-container {
+    display: none;
+}
+
+
+
+
+
+
+/* ===== VEHICLE HUD ===== */
+#vehicle-hud-container {
+    display: none;
+    border-radius: 7px;
+    width: 310px;
+    height: 195px;
+    position: absolute;
+    left: 26px;
+    bottom: 66px;
+    font-family: 'TT Autonomous Trl', sans-serif;
+    border: 3px solid #181819e8;
+    color: #ffffff;
+    text-shadow: 0 0 2px #ffffff70,
+                 0 0 2px rgba(255, 255, 255, 0.25),
+                 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* SEATBELT ICON */
+#seatbelt {
+    position: absolute;
+    bottom: 10px; 
+    left: 30px;
+    font-size: 20px;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.seatbelt-off {
+    color: white;
+    animation: blink 1s infinite;
+}
+
+.seatbelt-on {
+    color: limegreen;
+    animation: none;
+}
+
+
+
+
+
+
+#speed-type {
+    position: absolute;
+    font-size: 15px;
+    bottom: 37px;
+    right: 5px;
+}
+
+#speed {
+    position: absolute;
+    font-size: 30px;
+    bottom: 0px;
+    right: 5px;
+    font-family: 'TT Autonomous Trl', sans-serif;
+}
+
+#speed .speed-zeroes {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: normal;
+    text-shadow: none !important;
+}
+
+#speed .speed-value {
+    color: rgb(24, 99, 120);
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(7, 8, 8, 0.751), 
+                 0 0 2px rgba(11, 11, 11, 0.607),
+                 0 0 2px rgba(0, 0, 0, 0.663);
+}
+
+
+ 
+#fuel-icon {
+    position: absolute;
+    font-size: 15px;
+    bottom: 8px;
+    color: #ffffff;
+    text-shadow: 0 0 2px #00000070,
+                 0 0 2px rgba(0, 0, 0, 0.25),
+                 0 0 2px rgba(0, 0, 0, 0.2); 
+    right: 43%;
+}
+
+#fuel {
+    position: absolute;
+    font-variant-caps: all-petite-caps;
+    font-family: 'TT Autonomous Trl', sans-serif;
+    font-size: 25px;
+    color: #ffffff;
+    text-shadow: 0 0 2px #00000070,
+                 0 0 2px rgba(0, 0, 0, 0.25),
+                 0 0 2px rgba(0, 0, 0, 0.2); 
+    bottom: 0px;
+    right: 50%;
+}
+
+#gear {
+    position: absolute;
+    font-size: 30px;
+    font-variant-caps: all-petite-caps;
+    font-family: 'TT Autonomous Trl', sans-serif;
+    color: rgb(24, 99, 120);
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(7, 8, 8, 0.751), 
+                 0 0 2px rgba(11, 11, 11, 0.607),
+                 0 0 2px rgba(0, 0, 0, 0.663);
+    bottom: 0px;
+    left: 10px;
+}
+
+#street1 {
+    font-variant-caps: all-petite-caps;
+    font-family: 'TT Autonomous Trl', sans-serif;
+    color: rgb(24, 99, 120);
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(7, 8, 8, 0.751), 
+                 0 0 2px rgba(11, 11, 11, 0.607),
+                 0 0 2px rgba(0, 0, 0, 0.663); 
+    position: absolute;
+    font-size: 20px;
+    left: 10px;
+}
+
+#street2 {
+    font-variant-caps: all-petite-caps;
+    font-family: 'TT Autonomous Trl', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 2px #ffffff70,
+                 0 0 2px rgba(255, 255, 255, 0.25),
+                 0 0 2px rgba(255, 255, 255, 0.2);  
+    position: absolute;
+    font-size: 15px;
+    top: 15px;
+    left: 10px;
+}
+
+#direction {
+    position: absolute;
+    font-family: 'Obised', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 2px #00000070,
+                 0 0 2px rgba(0, 0, 0, 0.25),
+                 0 0 2px rgba(0, 0, 0, 0.2);  
+    font-size: 20px;
+    top: 20px;
+    right: 5px;
+}
