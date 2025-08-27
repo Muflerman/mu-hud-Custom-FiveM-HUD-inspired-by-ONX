@@ -7,7 +7,7 @@ This HUD is lightweight, easy to install, and customizable for your server’s n
 ---
 
 ## ✨ Features
-- Inspired by ONX HUD (two versions)  
+- Inspired by ONX HUD (two versions) and Mt-hud
 - Clean and modern design  
 - Lightweight and optimized  
 - Easy to customize  
