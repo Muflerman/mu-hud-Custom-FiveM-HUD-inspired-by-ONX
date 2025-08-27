@@ -11,9 +11,10 @@ This HUD is lightweight, easy to install, and customizable for your server’s n
 - Clean and modern design  
 - Lightweight and optimized  
 - Easy to customize  
-
+- Add  seat belt
 ---
 
 
-![6323dfee35389dbf5dac3fa75c07c03e](https://github.com/user-attachments/assets/1bd775cf-7209-4d62-b2b6-451ec11d0a97)
-![d5703216424f330345a1e3afdbaf0582](https://github.com/user-attachments/assets/a11d8363-3ec5-46db-bdfb-1cb5dc947eb4)
+![7277fce3c02d8a5013bb33b300e8e57a](https://github.com/user-attachments/assets/ecf8a8c9-f8aa-4140-8619-edfdd0b0f850)
+
+![332a2881add3f68e02e59ec295fa2b56](https://github.com/user-attachments/assets/1e194233-bb5a-428c-bd6c-46cce7b77109)
