@@ -14,12 +14,6 @@ This HUD is lightweight, easy to install, and customizable for your server’s n
 
 ---
 
-## 📥 Installation
-1. Download the latest version as a **ZIP** from this repository:  
-   - Click the green **Code** button.  
-   - Select **Download ZIP**.  
-2. Extract the ZIP file.  
-3. Place the folder **mu-hud** inside your FiveM server’s `resources` directory.  
-4. Add the following line to your `server.cfg`:
-   ```cfg
-   ensure mu-hud
+
+![6323dfee35389dbf5dac3fa75c07c03e](https://github.com/user-attachments/assets/1bd775cf-7209-4d62-b2b6-451ec11d0a97)
+![d5703216424f330345a1e3afdbaf0582](https://github.com/user-attachments/assets/a11d8363-3ec5-46db-bdfb-1cb5dc947eb4)
