@@ -234,7 +234,7 @@ body {
     display: none;
     border-radius: 7px;
     width: 310px;
-    height: 195px;
+    height: 201px;
     position: absolute;
     left: 26px;
     bottom: 66px;
@@ -244,7 +244,7 @@ body {
     text-shadow: 0 0 2px #ffffff70,
                  0 0 2px rgba(255, 255, 255, 0.25),
                  0 0 2px rgba(255, 255, 255, 0.2);
-}
+
 
 /* SEATBELT ICON */
 #seatbelt {
@@ -376,3 +376,4 @@ body {
     top: 20px;
     right: 5px;
 }
+
