@@ -414,4 +414,72 @@ RegisterNetEvent('qb-spawn:client:closeUI', function()
     inSpawnSelector = false
 end)
 
+-- ======================
+-- 9. PERSONALIZACIÓN DE MINIMAPA
+-- ======================
+
+RegisterNetEvent("hud:client:LoadMap", function()
+    Wait(100)
+
+    -- Constantes base
+    local DEFAULT_ASPECT = 1920.0 / 1080.0
+
+    -- Resolución y aspect ratio actuales
+    local resX, resY = GetActiveScreenResolution()
+    local aspect = resX / resY
+
+    -- Safezone (GTA lo expresa 0.90–1.00). Creamos un pequeño offset.
+    local safe = GetSafeZoneSize()
+    local safePadding = (1.0 - safe) -- 0.0 cuando safe=1.0
+    local safeX = safePadding * 0.03   -- ajusta fino si lo ves necesario
+    local safeY = safePadding * 0.03
+
+    -- Compensación para ultrawide: si aspect > 16:9, desplazamos a la derecha
+    local minimapOffset = 0.0
+    if aspect > DEFAULT_ASPECT then
+        -- factor suave; súbelo/bájalo si usas 21:9 o 32:9 muy extremos
+        minimapOffset = (aspect - DEFAULT_ASPECT) * 0.05
+    end
+
+    -- Carga del diccionario de textura cuadrada
+    RequestStreamedTextureDict("squaremap", false)
+    local tries = 0
+    while not HasStreamedTextureDictLoaded("squaremap") and tries < 50 do
+        Wait(10)
+        tries = tries + 1
+    end
+
+    -- Minimapa cuadrado
+    SetMinimapClipType(0)
+    AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "squaremap", "radarmasksm")
+    AddReplaceTexture("platform:/textures/graphics", "radarmask1g", "squaremap", "radarmasksm")
+
+    -- Anchors y tamaño (valores base, fáciles de tunear)
+    local baseX = 0.020 + minimapOffset + safeX
+    local baseY = -0.030 - safeY
+
+    -- width/height del componente principal
+    local w, h = 0.150, 0.160
+
+    -- 🎯 Posiciones/tamaños coherentes entre componentes
+    SetMinimapComponentPosition("minimap",       "L", "B", baseX,           baseY,        w,      h)
+    SetMinimapComponentPosition("minimap_mask",  "L", "B", baseX,           baseY + 0.070, 0.535, 0.360)
+    SetMinimapComponentPosition("minimap_blur",  "L", "B", baseX - 0.030,   baseY + 0.060, 0.260, 0.315)
+
+    -- Oculta el norte grande y fuerza refresco del minimapa una sola vez
+    SetBlipAlpha(GetNorthRadarBlip(), 0)
+    SetRadarBigmapEnabled(true, false)
+    Wait(50)
+    SetRadarBigmapEnabled(false, false)
+end)
+
+-- (Opcional) Limpia cuando se pare el recurso para no dejar el mask reemplazado
+AddEventHandler("onResourceStop", function(res)
+    if res == GetCurrentResourceName() then
+        RemoveReplaceTexture("platform:/textures/graphics", "radarmasksm")
+        RemoveReplaceTexture("platform:/textures/graphics", "radarmask1g")
+    end
+end)
+
+
 
